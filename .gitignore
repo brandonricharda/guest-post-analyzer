@@ -27,6 +27,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/guest-post-analyzer-1c251269e2f9.json
 
 /public/packs
 /public/packs-test

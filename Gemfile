@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 # Required for RSpec testing
 gem 'rexml'
 
+gem 'google_drive'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
