@@ -101,7 +101,11 @@ RSpec.describe GuestPost, type: :model do
         end
 
         it "identifies correct links" do
-            expect(guest_post.get_links).to eql ENV["sample_guest_post_urls"].split(" ")
+            expect(guest_post.get_links.values).to eql ENV["sample_guest_post_urls"].split(" ")
+        end
+
+        it "identifies correct anchors" do
+            expect(guest_post.get_links.keys).to eql ["Click here", "Formica", "outdoor kitchen.", "uses for epoxy"]
         end
 
     end
