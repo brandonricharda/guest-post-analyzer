@@ -72,6 +72,24 @@ RSpec.describe GuestPost, type: :model do
 
         end
 
+        context "when called with locked url" do
+
+            let(:guest_post) { GuestPost.create(:url => ENV["private_google_doc_link"]) }
+
+            it "doesn't create record" do
+                expect { guest_post }.to_not change { GuestPost.count }
+            end
+
+            it "returns one error" do
+                expect(guest_post.errors.count).to eql 1
+            end
+
+            it "returns check permissions error" do
+                expect(guest_post.errors[:url].first).to eql "not found (check file permissions)"
+            end
+
+        end
+
     end
 
 end
