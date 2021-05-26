@@ -92,4 +92,18 @@ RSpec.describe GuestPost, type: :model do
 
     end
 
+    describe ".get_links" do
+
+        let(:guest_post) { GuestPost.create(:url => ENV["sample_guest_post"]) }
+
+        it "identifies number of links correctly" do
+            expect(guest_post.get_links.count).to eql 4
+        end
+
+        it "identifies correct links" do
+            expect(guest_post.get_links).to eql ENV["sample_guest_post_urls"].split(" ")
+        end
+
+    end
+
 end
