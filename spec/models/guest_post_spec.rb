@@ -12,8 +12,8 @@ RSpec.describe GuestPost, type: :model do
                 expect { guest_post }.to_not change { GuestPost.count }
             end
 
-            it "returns two errors" do
-                expect(guest_post.errors.count).to eql 2
+            it "returns three errors" do
+                expect(guest_post.errors.count).to eql 3
             end
 
             it "returns url blank error" do
@@ -24,11 +24,17 @@ RSpec.describe GuestPost, type: :model do
                 expect(guest_post.errors[:url].last).to eql "not a valid URL"
             end
 
+            it "returns batch blank error" do
+                expect(guest_post.errors[:batch].first).to eql "must exist"
+            end
+
         end
 
         context "when called with valid url" do
 
-            let(:guest_post) { GuestPost.create(:url => ENV["first_google_doc_link"]) }
+            let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+
+            let(:guest_post) { batch.guest_posts.create(:url => ENV["first_google_doc_link"]) }
 
             it "creates record" do
                 expect { guest_post }.to change { GuestPost.count }.by 1
@@ -38,7 +44,9 @@ RSpec.describe GuestPost, type: :model do
 
         context "when called with invalid url" do
 
-            let(:guest_post) { GuestPost.create(:url => "!@#$%^&*()") }
+            let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+
+            let(:guest_post) { batch.guest_posts.create(:url => "!@#$%^&*()") }
 
             it "doesn't create record" do
                 expect { guest_post }.to_not change { GuestPost.count }
@@ -56,7 +64,9 @@ RSpec.describe GuestPost, type: :model do
 
         context "when called with url that isn't google doc" do
 
-            let(:guest_post) { GuestPost.create(:url => "https://www.youtube.com/") }
+            let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+
+            let(:guest_post) { batch.guest_posts.create(:url => "https://www.youtube.com/") }
 
             it "doesn't create record" do
                 expect { guest_post }.to_not change { GuestPost.count }
@@ -74,7 +84,9 @@ RSpec.describe GuestPost, type: :model do
 
         context "when called with locked url" do
 
-            let(:guest_post) { GuestPost.create(:url => ENV["private_google_doc_link"]) }
+            let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+
+            let(:guest_post) { batch.guest_posts.create(:url => ENV["private_google_doc_link"]) }
 
             it "doesn't create record" do
                 expect { guest_post }.to_not change { GuestPost.count }
@@ -94,7 +106,9 @@ RSpec.describe GuestPost, type: :model do
 
     describe ".get_links" do
 
-        let(:guest_post) { GuestPost.create(:url => ENV["sample_guest_post"]) }
+        let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+
+        let(:guest_post) { batch.guest_posts.create(:url => ENV["sample_guest_post"]) }
 
         it "identifies number of links correctly" do
             expect(guest_post.get_links.count).to eql 4

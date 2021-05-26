@@ -4,6 +4,8 @@ class GuestPost < ApplicationRecord
     validates :url, presence: true
     validates_with GuestPostValidator
 
+    belongs_to :batch
+
     def get_links
         
         results = {}
