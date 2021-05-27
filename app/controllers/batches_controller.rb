@@ -6,6 +6,7 @@ class BatchesController < ApplicationController
 
     def show
         @batch = Batch.find(params[:id])
+        @guest_posts = @batch.guest_posts.map { |guest_post| guest_post = guest_post.compile_data }
     end
 
     def new

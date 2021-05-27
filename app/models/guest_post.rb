@@ -27,6 +27,12 @@ class GuestPost < ApplicationRecord
 
     end
 
+    def compile_data
+        result = {}
+        result[self.url] = self.get_links
+        result
+    end
+
     def session
         GoogleDriveSession.new.session
     end

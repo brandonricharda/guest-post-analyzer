@@ -124,4 +124,22 @@ RSpec.describe GuestPost, type: :model do
 
     end
 
+    describe ".compile_data" do
+
+        let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+
+        let(:guest_post) { batch.guest_posts.create(:url => ENV["sample_guest_post"]) }
+
+        it "creates hash" do
+            expect(guest_post.compile_data.class).to eql Hash
+        end
+
+        it "populates hash correctly" do
+            expect(guest_post.compile_data).to include({
+                guest_post.url => guest_post.get_links
+            })
+        end
+
+    end
+
 end
