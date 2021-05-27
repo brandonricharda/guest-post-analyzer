@@ -11,6 +11,25 @@
   </head>
 
   <body>
+
+    <nav class="navbar is-light mb-5" role="navigation">
+
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://buildmediagroup.com/">
+                <img src="https://buildmediagroup.com/wp-content/uploads/2020/09/logo.png"></img>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <%= link_to("Start Over", new_batch_url, class: "navbar-item") %>
+                <%= link_to("GitHub", "https://github.com/brandonricharda/guest-post-analyzer", class: "navbar-item") %>
+            </div>
+        </div>
+
+    </nav>
+
     <%= yield %>
+
   </body>
 </html>

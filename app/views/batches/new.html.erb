@@ -1,6 +1,22 @@
-<h2>Create a new batch</h2>
+<div class="columns has-text-centered">
+    <div class="column"></div>
+    <div class="column">
 
-<%= form_for @batch do |f| %>
-    <%= f.text_area :urls %>
-    <%= f.submit %>
-<% end %>
+        <h2 class="title is-2">Create a new batch</h2>
+
+        <div class="box">
+            <%= form_for @batch do |f| %>
+                <%= f.text_area :urls, class: "textarea mb-5", placeholder: "Insert Google Doc URLs here (one per line)" %>
+                <%= f.submit class: "button is-success is-fullwidth" %>
+            <% end %>
+        </div>
+
+        <div class="notification">
+            <h2 class="title is-3 mb-5">Instructions</h2>
+            <p>Place your guest post URLs in the text area above. Keep one on each line. Make sure each document has <b>"Anyone with this link can edit"</b> permissions.</p></br></br>
+            <p>Once you hit "Create Batch," the app will retrieve data from each file and present you with a summary on the next page.</p>
+        </div>
+
+    </div>
+    <div class="column"></div>
+</div>
