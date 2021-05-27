@@ -106,20 +106,36 @@ RSpec.describe GuestPost, type: :model do
 
     describe ".get_links" do
 
-        let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+        context "when called with valid batch" do
 
-        let(:guest_post) { batch.guest_posts.create(:url => ENV["sample_guest_post"]) }
+            let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
 
-        it "identifies number of links correctly" do
-            expect(guest_post.get_links.count).to eql 4
+            let(:guest_post) { batch.guest_posts.create(:url => ENV["sample_guest_post"]) }
+
+            it "identifies number of links correctly" do
+                expect(guest_post.get_links.count).to eql 4
+            end
+
+            it "identifies correct links" do
+                expect(guest_post.get_links.values).to eql ENV["sample_guest_post_urls"].split(" ")
+            end
+
+            it "identifies correct anchors" do
+                expect(guest_post.get_links.keys).to eql ["Click here", "Formica", "outdoor kitchen.", "uses for epoxy"]
+            end
+
         end
 
-        it "identifies correct links" do
-            expect(guest_post.get_links.values).to eql ENV["sample_guest_post_urls"].split(" ")
-        end
+        context "when called with docx file" do
 
-        it "identifies correct anchors" do
-            expect(guest_post.get_links.keys).to eql ["Click here", "Formica", "outdoor kitchen.", "uses for epoxy"]
+            let(:batch) { Batch.create(:urls => ENV["docx_file_link"]) }
+
+            let(:guest_post) { batch.guest_posts.create(:url => ENV["docx_file_link"]) }
+
+            it "produces docx error message" do
+                expect(guest_post.get_links.values.first).to eql "" => "is not a native Google Doc file"
+            end
+
         end
 
     end

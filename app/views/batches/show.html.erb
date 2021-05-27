@@ -7,7 +7,11 @@
                 <h2 class="title is-4 mb-6">Article <%= index + 1 %></h2>
                 <p class="subtitle is-6"><b>Number of Links:</b> <%= guest_post.values.first.count %></p>
                 <% guest_post.values.first.each_with_index do |(anchor, link), index| %>
-                    <% if anchor.length > 1 %>
+                    <% if link == { "" => "is not a native Google Doc file" } %>
+                        <div class="notification is-danger has-text-centered">
+                            <p>This is not a native Google Doc file.</p>
+                        </div>
+                    <% elsif anchor.length > 1 %>
                         <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %>><%= anchor %></a> </p>
                     <% else %>
                         <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %>><%= link %></a> </p>
