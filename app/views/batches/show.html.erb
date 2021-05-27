@@ -1,1 +1,20 @@
-<h1>Sup</h1>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column">
+        <h2 class="title is-2 has-text-centered">Results</h2>
+        <% @guest_posts.each_with_index do |guest_post, index| %>
+            <div class="box">
+                <h2 class="title is-4 mb-6">Article <%= index + 1 %></h2>
+                <p class="subtitle is-6"><b>Number of Links:</b> <%= guest_post.values.first.count %></p>
+                <% guest_post.values.first.each_with_index do |(anchor, link), index| %>
+                    <% if anchor.length > 1 %>
+                        <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %>><%= anchor %></a> </p>
+                    <% else %>
+                        <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %>><%= link %></a> </p>
+                    <% end %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    <div class="column"></div>
+</div>
