@@ -140,4 +140,24 @@ RSpec.describe GuestPost, type: :model do
 
     end
 
+    describe ".check_spelling" do
+
+        context "when called on post" do
+
+            let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
+
+            let(:guest_post) { batch.guest_posts.create(:url => ENV["sample_guest_post"]) }
+
+            it "returns array" do
+                expect(guest_post.check_spelling.class).to eql Array
+            end
+
+            it "returns hashes inside array" do
+                expect(guest_post.check_spelling.all? { |match| match.class == Hash }).to eql true
+            end
+
+        end
+
+    end
+
 end
