@@ -39,6 +39,8 @@ https://serene-dusk-25063.herokuapp.com/
 
 ### Step 2: Enter Your Google Doc URLs on the Homepage
 
+<img src="https://github.com/brandonricharda/guest-post-analyzer/blob/main/app/assets/images/guest-post-analyzer-new-batch-page.png">
+
 Next, you'll arrive at a screen that looks like this. Enter your Google Doc share URLs in the text area. Make sure to:
 1. Place one URL per line.
 2. Link only to files that are native Google Docs. If you feed the application .docx files, it will skip those files and show you an error where the results otherwise would've been (I'll show you what I mean in a second).
@@ -48,9 +50,15 @@ Once you've entered your Google Doc URLs, hit "Create Batch." The app will pause
 
 ### Step 3: See the Results on the Next Page
 
+<img src="https://github.com/brandonricharda/guest-post-analyzer/blob/main/app/assets/images/guest-post-analyzer-results-page.png">
+
 As of writing, the application extracts all the anchor texts in each article along with their hyperlinks and lists them for you (grouped by article). You can click on the anchor text and it will open in a new tab to show you what link the writer used.
 
 If you entered a .docx URL, that article's associated box will simply contain an error message.
+
+<img src="https://github.com/brandonricharda/guest-post-analyzer/blob/main/app/assets/images/guest-post-analyzer-invalid-file.png">
+
+Click the "View Article on Google Drive" button to see which one it is. Then, return to the Homepage and create a new batch, replacing the faulty URL you initially input with a proper native Google Doc URL.
 
 ## What's Happening Behind the Scenes
 
