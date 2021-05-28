@@ -23,11 +23,11 @@
                             <% @spelling_errors[guest_post].each do |error| %>
                                 <p class="mt-5"><b>Sentence: </b><%= error["sentence"] %></p>
                                 <p><b>Error: </b><%= error["message"] %></p>
-                                <% if error["replacement"] %>
-                                    <p>Hey</p>
-                                <% end %>
                             <% end %>
-
+                        </div>
+                    <% else %>
+                        <div class="notification is-success">
+                            <p><b>No potential spelling errors found.</b></p>
                         </div>
                     <% end %>
 
