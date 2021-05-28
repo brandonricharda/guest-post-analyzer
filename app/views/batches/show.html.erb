@@ -5,6 +5,7 @@
         <% @guest_posts.each_with_index do |guest_post, index| %>
             <div class="box">
                 <h2 class="subtitle is-4 mb-5">Article <%= index + 1 %></h2>
+
                 <% if guest_post.is_google_doc %>
 
                     <% guest_post.get_links.each_with_index do |(anchor, link), index| %>
@@ -13,6 +14,21 @@
                         <% else %>
                             <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %> target="blank"><%= link %></a> </p>
                         <% end %>
+                    <% end %>
+
+                    <% if @spelling_errors[guest_post].count > 0 %>
+                        <div class="notification is-warning mt-5">
+                            <p><b><%= @spelling_errors[guest_post].count %> potential spelling/grammar errors found.</b></p>
+
+                            <% @spelling_errors[guest_post].each do |error| %>
+                                <p class="mt-5"><b>Sentence: </b><%= error["sentence"] %></p>
+                                <p><b>Error: </b><%= error["message"] %></p>
+                                <% if error["replacement"] %>
+                                    <p>Hey</p>
+                                <% end %>
+                            <% end %>
+
+                        </div>
                     <% end %>
 
                 <% else %>

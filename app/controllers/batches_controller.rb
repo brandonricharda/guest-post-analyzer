@@ -7,6 +7,10 @@ class BatchesController < ApplicationController
     def show
         @batch = Batch.find(params[:id])
         @guest_posts = @batch.guest_posts
+        @spelling_errors = {}
+        @guest_posts.each do |guest_post|
+            @spelling_errors[guest_post] = guest_post.check_spelling
+        end
     end
 
     def new
