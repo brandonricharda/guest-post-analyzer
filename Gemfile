@@ -38,6 +38,9 @@ gem 'nokogiri'
 # For styling
 gem "bulma-rails", "~> 0.9.1"
 
+# For spellcheck
+gem 'grammarbot'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
