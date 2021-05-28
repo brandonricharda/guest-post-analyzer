@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_26_221129) do
+ActiveRecord::Schema.define(version: 2021_05_27_234313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_05_26_221129) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "batch_id"
+    t.boolean "is_google_doc", default: true
     t.index ["batch_id"], name: "index_guest_posts_on_batch_id"
   end
 

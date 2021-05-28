@@ -132,28 +132,10 @@ RSpec.describe GuestPost, type: :model do
 
             let(:guest_post) { batch.guest_posts.create(:url => ENV["docx_file_link"]) }
 
-            it "produces docx error message" do
-                expect(guest_post.get_links.values.first).to eql "" => "is not a native Google Doc file"
+            it "catches .docx file" do
+                expect(guest_post.is_google_doc).to eql false
             end
 
-        end
-
-    end
-
-    describe ".compile_data" do
-
-        let(:batch) { Batch.create(:urls => ENV["valid_google_doc_links"]) }
-
-        let(:guest_post) { batch.guest_posts.create(:url => ENV["sample_guest_post"]) }
-
-        it "creates hash" do
-            expect(guest_post.compile_data.class).to eql Hash
-        end
-
-        it "populates hash correctly" do
-            expect(guest_post.compile_data).to include({
-                guest_post.url => guest_post.get_links
-            })
         end
 
     end

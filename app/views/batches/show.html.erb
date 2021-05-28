@@ -4,20 +4,25 @@
         <h2 class="title is-2 has-text-centered">Results</h2>
         <% @guest_posts.each_with_index do |guest_post, index| %>
             <div class="box">
-                <h2 class="title is-4 mb-6">Article <%= index + 1 %></h2>
-                <p class="subtitle is-6"><b>Number of Links:</b> <%= guest_post.values.first.count %></p>
-                <% guest_post.values.first.each_with_index do |(anchor, link), index| %>
-                    <% if link == { "" => "is not a native Google Doc file" } %>
-                        <div class="notification is-danger has-text-centered">
-                            <p>This is not a native Google Doc file.</p>
-                        </div>
-                    <% elsif anchor.length > 1 %>
-                        <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %>><%= anchor %></a> </p>
-                    <% else %>
-                        <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %>><%= link %></a> </p>
+                <h2 class="subtitle is-4 mb-5">Article <%= index + 1 %></h2>
+                <% if guest_post.is_google_doc %>
+
+                    <% guest_post.get_links.each_with_index do |(anchor, link), index| %>
+                        <% if anchor.length > 1 %>
+                            <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %> target="blank"><%= anchor %></a> </p>
+                        <% else %>
+                            <p><b>Link <%= index + 1 %>:</b> <a href=<%= link %> target="blank"><%= link %></a> </p>
+                        <% end %>
                     <% end %>
+
+                <% else %>
+                    <div class="notification is-danger has-text-centered">
+                        <p>This is not a valid Google Doc file.</p>
+                    </div>
                 <% end %>
-                <a class="button is-success is-fullwidth mt-5" href=<%= guest_post.keys.first %> target="blank">View Article on Google Drive</a>
+
+                <a class="button is-success is-fullwidth mt-5" href=<%= guest_post.url %> target="blank">View Article on Google Drive</a>
+
             </div>
         <% end %>
     </div>
