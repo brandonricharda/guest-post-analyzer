@@ -19,11 +19,6 @@
                     <% if @spelling_errors[guest_post].count > 0 %>
                         <div class="notification is-warning mt-5">
                             <p><b><%= @spelling_errors[guest_post].count %> potential spelling/grammar errors found.</b></p>
-
-                            <% @spelling_errors[guest_post].each do |error| %>
-                                <p class="mt-5"><b>Sentence: </b><%= error["sentence"] %></p>
-                                <p><b>Error: </b><%= error["message"] %></p>
-                            <% end %>
                         </div>
                     <% else %>
                         <div class="notification is-success">
