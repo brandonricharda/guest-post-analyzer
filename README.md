@@ -5,11 +5,17 @@ https://serene-dusk-25063.herokuapp.com/
 
 ## Application Summary
 
-Given a list of Google Doc links, this application will extract hyperlinks and anchor texts from them. It will then show the user each anchor text and its associated hyperlink on the next screen.
+Given a list of Google Doc articles, this application will do two things:
+1. Extract hyperlinks and text.
+2. Count the number of potential spelling/grammar errors.
 
-The intended use case for this application is streamlining the guest post review process. Rather than having to open each document and check the links, you can simply place their Google Doc URLs in this tool and it will extract them all for you in a matter of seconds.
+It will then display both metrics on a results page.
 
-I'll also be adding more features (i.e. plagiarism and grammar checks) to streamline the article review process further.
+The intended use case for this application is streamlining the guest post review process. Rather than having to open each document and manually check for the aforementioned information, you can simply place their Google Doc URLs in this tool and it will extract it for you in a matter of seconds.
+
+This is useful since guest posts are quite commoditized. Most SEO's don't spend a ton of time reviewing them.
+
+I'll also be adding more features (i.e. a plagiarism check) to streamline the guest post review process further.
 
 ## Technical Information
 
@@ -21,6 +27,7 @@ I built this application using the following technologies.
 - PostgreSQL
 - RSpec (for testing)
 - Google Drive API
+- Grammarbot
 
 **Front-End:**
 - Bulma
