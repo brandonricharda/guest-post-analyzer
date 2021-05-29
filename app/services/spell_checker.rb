@@ -13,7 +13,7 @@ class SpellChecker
 
         request = Net::HTTP::Post.new(url)
         request["content-type"] = 'application/x-www-form-urlencoded'
-        request["x-rapidapi-key"] = '9d5c7b046cmshf6fdae56ace44d0p1a3fe3jsnfd1188e7ccc5'
+        request["x-rapidapi-key"] = ENV["rapid_api_key"]
         request["x-rapidapi-host"] = 'grammarbot.p.rapidapi.com'
 
         request.body = "text=#{text}"
