@@ -61,6 +61,8 @@ Once you've entered your Google Doc URLs, hit "Create Batch." The app will pause
 
 As of writing, the application extracts all the anchor texts in each article along with their hyperlinks and lists them for you (grouped by article). You can click on the anchor text and it will open in a new tab to show you what link the writer used.
 
+The app also runs a spellcheck on the article using <a href="https://rapidapi.com/grammarbot/api/grammarbot">Grammarbot.</a> It will tally the number of potential errors and display it in the box as well (the yellow sections in the screenshot above).
+
 If you entered a .docx URL, that article's associated box will simply contain an error message.
 
 <img src="https://github.com/brandonricharda/guest-post-analyzer/blob/main/app/assets/images/guest-post-analyzer-invalid-file.png">
@@ -77,4 +79,4 @@ When you enter your Google Doc URLs on the first screen, you're creating a **Bat
 
 Each **GuestPost** model has a column containing the file's Google URL. If you entered an invalid URL (including one with incorrect permissions), the **GuestPost** record will not be created at all. This is to prevent improper files from breaking the application in subsequent steps.
 
-The mechanism that scans each **GuestPost** and extracts its hyperlinks and URLs is a model method. Every single time you reload the results page, it will crawl through the document and grab the data again. This is so you can do things like edit the article and reload the results screen to see updated data rather than having to go back to the first step.
+The mechanisms that scan each **GuestPost** and extract its hyperlinks and URLs are model methods. Every single time you reload the results page, it will crawl through the document and grab the data again. This is so you can do things like edit the article and reload the results screen to see updated data rather than having to go back to the first step.
